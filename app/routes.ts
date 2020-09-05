@@ -4,7 +4,7 @@ import apiSpec from '../openapi.json'
 
 const swaggerUiOptions = {
   customCss: '.swagger-ui .topbar { display: none }'
-};
+}
 
 const router = Router()
 
@@ -14,4 +14,4 @@ if (process.env.NODE_ENV === 'development') {
   router.get('/dev/api-docs', swaggerUi.setup(apiSpec, swaggerUiOptions))
 }
 
-export default router;
+export default router

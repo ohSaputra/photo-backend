@@ -1,23 +1,23 @@
 import {
   RequestHandler, Request, Response, NextFunction
-} from 'express';
-import Joi from 'joi';
-import BadRequest from '../errors/bad-request';
-import logger from '../logger';
+} from 'express'
+import Joi from 'joi'
+import BadRequest from '../errors/bad-request'
+import logger from '../logger'
 
 const getMessageFromJoiError = (error: Joi.ValidationError): string | undefined => {
-  if (!error.details && error.message) {
-    return error.message;
+  if (error.details.length === 0 && error.message != null) {
+    return error.message
   }
-  return error.details && error.details.length > 0 && error.details[0].message
-    ? `PATH: [${error.details[0].path}] ;; MESSAGE: ${error.details[0].message}` : undefined;
-};
+  return error.details.length > 0 && error.details[0].message != null
+    ? `PATH: [${error.details[0].path[0]}] ;; MESSAGE: ${error.details[0].message}` : undefined
+}
 
 interface HandlerOptions {
   validation?: {
     body?: Joi.ObjectSchema
   }
-};
+}
 
 /**
  * This router wrapper catches any error from async await
@@ -29,10 +29,10 @@ export const relogRequestHandler = (
   handler: RequestHandler,
   options?: HandlerOptions,
 ): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
-  if (options?.validation?.body) {
-    const { error } = options?.validation?.body.validate(req.body);
+  if (options?.validation?.body != null) {
+    const { error } = options?.validation?.body.validate(req.body)
     if (error != null) {
-      return next(new BadRequest(getMessageFromJoiError(error)));
+      return next(new BadRequest(getMessageFromJoiError(error)))
     }
   }
 
@@ -42,10 +42,10 @@ export const relogRequestHandler = (
         level: 'error',
         message: 'Error in request handler',
         error: err
-      });
+      })
     }
-    next(err);
-  });
-};
+    next(err)
+  })
+}
 
-export default relogRequestHandler;
+export default relogRequestHandler
