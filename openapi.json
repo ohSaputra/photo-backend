@@ -1,0 +1,20 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Service",
+    "version": "1.0.0",
+    "description": "API Service endpoints",
+    "contact": {
+      "email": "utomo.hendra.saputra@gmail.com",
+      "name": "Utomo Hendra"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8888/"
+    }
+  ],
+  "tags": [],
+  "paths": {},
+  "components": {}
+}
