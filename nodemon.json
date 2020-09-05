@@ -6,8 +6,8 @@
     "node_modules"
   ],
   "watch": [
-    "src"
+    "app"
   ],
-  "exec": "yarn eslint && ts-node src/server.ts",
+  "exec": "yarn eslint && ts-node app/server.ts",
   "ext": "ts"
 }

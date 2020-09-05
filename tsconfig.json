@@ -1,4 +1,7 @@
 {
+  "include": [
+    "app/**/*"
+  ],
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
@@ -11,12 +14,12 @@
     "paths": {
       "*": [
         "node_modules/*"
+      ],
+      "App/*": [
+        "./app/*"
       ]
     },
     "resolveJsonModule": true,
     "strictNullChecks": true
-  },
-  "include": [
-    "src/**/*"
-  ]
+  }
 }

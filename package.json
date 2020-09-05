@@ -11,7 +11,7 @@
     "start": "node dist/server.js",
     "test": "jest",
     "lint": "npx eslint .",
-    "eslint": "npx eslint src/server.ts"
+    "eslint": "npx eslint app/server.ts"
   },
   "dependencies": {
     "body-parser": "1.19.0",
