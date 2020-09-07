@@ -14,7 +14,7 @@ const port: string = app.get('port')
 DatabaseService.connect()
   .then(() => {
     app.listen(port, () => {
-      console.log('\x1b[36m%s\1b[0m', `Express server started at http://localhost:${port}`)
+      console.log('\x1b[36m%s\x1b[0m', `Express server started at http://localhost:${port}`)
       console.log('\x1b[36m%s\x1b[0m', `Swagger UI hosted at http://localhost:${port}/dev/api-docs`)
     })
 

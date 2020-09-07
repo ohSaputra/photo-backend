@@ -45,18 +45,14 @@ const PhotoService = {
 
   async remove ({ album, name }: find) {
     const repository = PhotoService.photoRepository()
-    const photo = await PhotoService.findOne({ album, name })
-
-    if (photo !== null) {
-      await repository.delete({ album, name })
-      unlink(`albums/${album.toLowerCase()}/${name}`, err => {
-        if (err !== null && err.code == 'ENOENT') {
-          console.info(`${name} doesn't exist, won't remove it.`)
-        } else {
-          console.log(`${name} deleted successfully.`)
-        }
-      })
-    }
+    await repository.delete({ album, name })
+    unlink(`albums/${album.toLowerCase()}/${name}`, err => {
+      if (err !== null && err.code == 'ENOENT') {
+        console.info(`${name} doesn't exist, won't remove it.`)
+      } else {
+        console.log(`${name} deleted successfully.`)
+      }
+    })
   },
 
   async flush () {
