@@ -22,3 +22,6 @@ pids
 
 # Vscode setting
 .vscode
+
+# Mac file log
+.DS_Store

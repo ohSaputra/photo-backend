@@ -2,8 +2,8 @@ import {
   RequestHandler, Request, Response, NextFunction
 } from 'express'
 import Joi from 'joi'
-import BadRequest from '../errors/bad-request'
-import logger from '../logger'
+import BadRequest from '@errors/bad-request'
+import logger from '@lib/logger'
 
 const getMessageFromJoiError = (error: Joi.ValidationError): string | undefined => {
   if (error.details.length === 0 && error.message != null) {

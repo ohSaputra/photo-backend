@@ -1,6 +1,6 @@
 {
   "include": [
-    "app/**/*"
+    "app/**/*", "loaders/logger.ts"
   ],
   "compilerOptions": {
     "module": "commonjs",
@@ -12,14 +12,15 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "node_modules/*"
-      ],
-      "App/*": [
-        "./app/*"
-      ]
+      "@app/*": ["app/*"],
+      "@middlewares/*": ["app/middlewares/*"],
+      "@errors/*": ["app/errors/*"],
+      "@services/*": ["app/services/*"],
+      "@lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }
