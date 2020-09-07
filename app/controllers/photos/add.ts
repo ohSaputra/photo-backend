@@ -1,15 +1,16 @@
 import { RequestHandler } from 'express'
 import requestMiddleware from '@middlewares/request'
 import PhotoService from '@services/photo-service'
+import { env } from '@app/env'
 
 const add: RequestHandler = async (req, res) => {
-  const { files }: { files: [] | any } = req
-  const { album } = req.body
+  const { album }: { album: string } = req.body
+  const files = req.files as Express.Multer.File[]
   const list = []
   for (const file of files) {
     await PhotoService.create({
       name: file.filename,
-      path: '/' + file.path,
+      path: `/${file.path}`,
       raw: `/photos/${album.toLowerCase()}/${file.filename}`,
       album
     })
@@ -17,7 +18,7 @@ const add: RequestHandler = async (req, res) => {
       album,
       name: file.filename,
       path: '/' + file.path,
-      raw: `${process.env.APP_HOST}/photos/${album.toLowerCase()}/${file.filename}`,
+      raw: `${env.app.host}/photos/${album.toLowerCase()}/${file.filename}`
     })
   }
   res.send({

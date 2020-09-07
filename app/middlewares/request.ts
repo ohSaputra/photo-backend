@@ -4,6 +4,7 @@ import {
 import Joi from 'joi'
 import BadRequest from '@errors/bad-request'
 import logger from '@lib/logger'
+import { env } from '@app/env'
 
 const getMessageFromJoiError = (error: Joi.ValidationError): string | undefined => {
   if (error.details.length === 0 && error.message != null) {
@@ -27,7 +28,7 @@ interface HandlerOptions {
  */
 export const relogRequestHandler = (
   handler: RequestHandler,
-  options?: HandlerOptions,
+  options?: HandlerOptions
 ): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
   if (options?.validation?.body != null) {
     const { error } = options?.validation?.body.validate(req.body)
@@ -37,7 +38,7 @@ export const relogRequestHandler = (
   }
 
   return handler(req, res, next).catch((err: Error) => {
-    if (process.env.NODE_ENV === 'development') {
+    if (env.isDevelopment) {
       logger.log({
         level: 'error',
         message: 'Error in request handler',

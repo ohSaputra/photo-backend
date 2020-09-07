@@ -3,13 +3,13 @@ import { unlink } from 'fs'
 import { Photos, IPhotos } from '@app/models/photos.entity'
 import { getRepository, Repository } from 'typeorm'
 
-type list = {
-  skip: number,
+interface iList {
+  skip: number
   limit: number
 }
 
-type find = {
-  album: string,
+interface iFind {
+  album: string
   name: string
 }
 
@@ -29,7 +29,7 @@ const PhotoService = {
     })
   },
 
-  async list ({ skip, limit }: list) {
+  async list ({ skip, limit }: iList) {
     const repository = PhotoService.photoRepository()
     return await repository
       .createQueryBuilder('photos')
@@ -38,16 +38,16 @@ const PhotoService = {
       .getManyAndCount()
   },
 
-  async findOne ({ album, name }: find) {
+  async findOne ({ album, name }: iFind) {
     const repository = PhotoService.photoRepository()
     return await repository.findOne({ album, name })
   },
 
-  async remove ({ album, name }: find) {
+  async remove ({ album, name }: iFind) {
     const repository = PhotoService.photoRepository()
     await repository.delete({ album, name })
     unlink(`albums/${album.toLowerCase()}/${name}`, err => {
-      if (err !== null && err.code == 'ENOENT') {
+      if (err !== null && err.code === 'ENOENT') {
         console.info(`${name} doesn't exist, won't remove it.`)
       } else {
         console.log(`${name} deleted successfully.`)
@@ -56,8 +56,8 @@ const PhotoService = {
   },
 
   async flush () {
-    const photoRepository = getRepository(Photos)
-    await photoRepository.clear()
+    const repository = PhotoService.photoRepository()
+    await repository.clear()
   }
 }
 

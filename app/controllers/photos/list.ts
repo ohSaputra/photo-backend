@@ -1,6 +1,7 @@
 import { RequestHandler } from 'express'
 import requestMiddleware from '@middlewares/request'
 import PhotoService from '@services/photo-service'
+import { env } from '@app/env'
 
 const list: RequestHandler = async (req, res) => {
   const { skip, limit } = req.body
@@ -12,7 +13,7 @@ const list: RequestHandler = async (req, res) => {
       album,
       name,
       path,
-      raw: process.env.APP_HOST + raw
+      raw: `${env.app.host}${raw}`
     }
     photosUpdated.push(obj)
   }
@@ -23,6 +24,6 @@ const list: RequestHandler = async (req, res) => {
     skip,
     limit
   })
-};
+}
 
 export default requestMiddleware(list)

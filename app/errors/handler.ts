@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import ApplicationError from '@errors/application-error'
+import { env } from '@app/env'
 
 const handler = (err: ApplicationError, req: Request, res: Response, next: NextFunction): any => {
   if (res.headersSent) {
@@ -7,7 +8,7 @@ const handler = (err: ApplicationError, req: Request, res: Response, next: NextF
   }
 
   return res.status(err.status ?? 500).json({
-    error: process.env.NODE_ENV === 'development' ? err : undefined,
+    error: env.isDevelopment ? err : undefined,
     message: err.message
   })
 }

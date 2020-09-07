@@ -1,20 +1,18 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import path from 'path'
 import routes from '@app/routes'
 import errorHandler from '@errors/handler'
 import cors from 'cors'
-
-const app = express()
-const port = process.env.PORT ?? 8888
-
-app.set('port', port)
+import { env } from '@app/env'
 
 const corsOptions = {
   origin: '*',
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200
 }
 
+const app = express()
+
+app.set('port', env.app.port)
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))

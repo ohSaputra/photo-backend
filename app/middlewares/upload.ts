@@ -2,16 +2,15 @@ import multer from 'multer'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const { album } = req.body
+    const { album }: { album: string } = req.body
     cb(null, `./albums/${album.toLowerCase()}/`)
   },
-  
   filename: (req: any, file: any, cb: any) => {
     cb(null, file.originalname)
   }
 })
 
-const fileFilter = (req: any, file: any, cb: any) => {
+const fileFilter = (req: any, file: Express.Multer.File, cb: any): void => {
   const allowedFileType = [
     'image/jpg',
     'image/jpeg',
@@ -19,9 +18,8 @@ const fileFilter = (req: any, file: any, cb: any) => {
     'image/gif',
     'image/webp'
   ]
-  
-  if (!allowedFileType.find(el => el === file.mimetype)) {
-    cb(new Error("Uploaded image is not of type jpg/jpeg/png/gif or webp"), false)
+  if (allowedFileType.find(el => el === file.mimetype) === undefined) {
+    cb(new Error(`${file.originalname} is not of type jpg/jpeg/png/gif or webp'`), false)
   }
   cb(null, true)
 }

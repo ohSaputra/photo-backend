@@ -8,6 +8,6 @@ const remove: RequestHandler = async (req, res) => {
   res.send({
     message: 'OK'
   })
-};
+}
 
 export default requestMiddleware(remove)

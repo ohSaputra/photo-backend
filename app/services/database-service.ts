@@ -5,22 +5,14 @@ import PhotoService from '@services/photo-service'
 
 const DatabaseService = {
   async connect () {
-    try {
-      const options = await DatabaseOptions()
-      return await createConnection(options)
-    } catch (e) {
-      throw e
-    }
+    const options = await DatabaseOptions()
+    return await createConnection(options)
   },
 
   async close () {
-    try {
-    console.log('Trying to clear data for development purpose ...')
+    console.info('Clearing database data for development purpose ...')
     await PhotoService.flush()
-    console.log('Successfully clear the table.\n')
-    } catch (e) {
-      throw e
-    }
+    logger.info('Successfully clear table data.')
   }
 }
 

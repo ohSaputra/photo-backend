@@ -25,3 +25,6 @@ pids
 
 # Mac file log
 .DS_Store
+
+# tmp
+tmp/

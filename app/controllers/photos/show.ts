@@ -10,7 +10,7 @@ const show: RequestHandler = async (req, res) => {
     name: filename
   })
 
-  if (photo !== null && photo) {
+  if (photo != null && photo !== undefined) {
     const readstream = createReadStream(photo.path.slice(1))
     readstream.pipe(res)
     readstream.on('error', err => { res.end(err) })
