@@ -2,6 +2,7 @@ import { RequestHandler } from 'express'
 import Joi from 'joi'
 import requestMiddleware from '@middlewares/request'
 import PhotoService from '@services/photo-service'
+import { cleanUUID } from '@middlewares/string'
 import { env } from '@app/env'
 
 export const listPhotoSchema = Joi.object().keys({
@@ -15,7 +16,7 @@ const list: RequestHandler = async (req, res) => {
   const photosUpdated = []
   for (const { id, album, name, path, raw } of photos[0]) {
     const obj = {
-      id,
+      id: cleanUUID(id),
       album,
       name,
       path,

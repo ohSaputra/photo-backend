@@ -14,7 +14,6 @@ const router = Router()
 
 router.get('/health', (req, res) => res.json())
 
-
 // Photo routes
 router.post('/photos/list', PhotosController.list)
 router.put('/photos', upload.array('documents'), PhotosController.add)

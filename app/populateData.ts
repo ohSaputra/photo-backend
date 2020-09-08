@@ -10,22 +10,22 @@ const albums = [
   'travel'
 ]
 
-export default async () => {
+export default async (): Promise<void> => {
   for (const albumName of albums) {
     const folder = `albums/${albumName}/`
-    await fs.readdir(folder, async (err, fileList) => {
+    await fs.readdir(folder, (err, fileList) => {
       if (err != null) {
         throw err
       }
       const capitalAlbum = capitalFirst(albumName)
       for (const file of fileList) {
-        await PhotoService.create({
+        PhotoService.create({
           name: file,
           path: `/albums/${capitalAlbum}/${file}`,
           raw: `/photos/${albumName}/${file}`,
           album: capitalAlbum,
           createdAt: new Date()
-        })
+        }).catch(e => { throw new Error(e) })
       }
     })
   }

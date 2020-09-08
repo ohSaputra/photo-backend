@@ -5,7 +5,7 @@ export interface IPhotos {
   album: string
   name: string
   path: string
-  raw: string,
+  raw: string
   createdAt: Date
 }
 
