@@ -27,4 +27,7 @@ pids
 .DS_Store
 
 # tmp
-tmp/
+tmp
+
+# Coverage directory used by tools like istanbul
+coverage

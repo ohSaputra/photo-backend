@@ -1,7 +1,6 @@
 import fs from 'fs'
 import PhotoService from '@services/photo-service'
 import { capitalFirst } from '@middlewares/string'
-import { date } from 'joi'
 
 const albums = [
   'food',
@@ -11,22 +10,22 @@ const albums = [
   'travel'
 ]
 
-export default (): void => {
+export default async () => {
   for (const albumName of albums) {
     const folder = `albums/${albumName}/`
-    fs.readdir(folder, (err, fileList) => {
+    await fs.readdir(folder, async (err, fileList) => {
       if (err != null) {
         throw err
       }
       const capitalAlbum = capitalFirst(albumName)
       for (const file of fileList) {
-        PhotoService.create({
+        await PhotoService.create({
           name: file,
           path: `/albums/${capitalAlbum}/${file}`,
           raw: `/photos/${albumName}/${file}`,
           album: capitalAlbum,
           createdAt: new Date()
-        }).catch(e => { throw e })
+        })
       }
     })
   }

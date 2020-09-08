@@ -1,5 +1,4 @@
 import { getConnectionOptions, ConnectionOptions } from 'typeorm'
-import { Photos } from '@app/models/photos.entity'
 import { env } from '@app/env'
 
 const DatabaseOptions = async (): Promise<ConnectionOptions> => {
@@ -11,7 +10,7 @@ const DatabaseOptions = async (): Promise<ConnectionOptions> => {
     username: env.db.username,
     password: env.db.password,
     database: env.db.database,
-    entities: [Photos],
+    entities: ['app/models/**/*.entity.ts'],
     synchronize: true,
     logging: false
   })

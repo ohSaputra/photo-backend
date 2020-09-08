@@ -12,7 +12,10 @@ const swaggerUiOptions = {
 
 const router = Router()
 
-// Book routes
+router.get('/health', (req, res) => res.json())
+
+
+// Photo routes
 router.post('/photos/list', PhotosController.list)
 router.put('/photos', upload.array('documents'), PhotosController.add)
 router.get('/photos/:album/:filename', PhotosController.show)

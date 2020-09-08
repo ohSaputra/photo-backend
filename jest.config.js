@@ -72,7 +72,13 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    "^@app(.*)$": "<rootDir>/app$1",
+    "^@middlewares(.*)$": "<rootDir>/app/middlewares$1",
+    "^@errors(.*)$": "<rootDir>/app/errors$1",
+    "^@services(.*)$": "<rootDir>/app/services$1",
+    "^@lib(.*)$": "<rootDir>/lib$1"
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
