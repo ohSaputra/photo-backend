@@ -1,7 +1,13 @@
 import { RequestHandler } from 'express'
+import Joi from 'joi'
 import requestMiddleware from '@middlewares/request'
 import PhotoService from '@services/photo-service'
 import { env } from '@app/env'
+
+export const listPhotoSchema = Joi.object().keys({
+  skip: Joi.number().required(),
+  limit: Joi.number().required()
+})
 
 const list: RequestHandler = async (req, res) => {
   const { skip, limit } = req.body
@@ -26,4 +32,4 @@ const list: RequestHandler = async (req, res) => {
   })
 }
 
-export default requestMiddleware(list)
+export default requestMiddleware(list, { validation: { body: listPhotoSchema } })
