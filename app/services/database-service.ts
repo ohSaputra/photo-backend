@@ -2,7 +2,7 @@ import { createConnection, getConnection } from 'typeorm'
 import DatabaseOptions from '@lib/typeorm'
 import logger from '@lib/logger'
 import PhotoService from '@services/photo-service'
-import populateData from '@app/populateData'
+import populateData from '@app/start/populateData'
 
 const DatabaseService = {
   async connect () {

@@ -1,22 +1,26 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import routes from '@app/routes'
-import errorHandler from '@errors/handler'
 import cors from 'cors'
+import { corsOptions } from '@lib/cors'
+import errorHandler from '@errors/handler'
 import { env } from '@app/env'
-
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
+import {
+  health,
+  photo,
+  swagger
+} from '@app/start/routes'
 
 const app = express()
 
-app.set('port', env.app.port)
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(routes)
+// Assign routes
+app.use(health)
+app.use(photo)
+if (env.isDevelopment) {
+  app.use(swagger)
+}
 
 app.use(errorHandler)
 

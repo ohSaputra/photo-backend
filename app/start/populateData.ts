@@ -10,6 +10,11 @@ const albums = [
   'travel'
 ]
 
+/**
+ * PhotoGenerator
+ * - this function will generate data from static albums from root
+ * - PhotoService here will be used to store generated data into db
+ */
 export default async (): Promise<void> => {
   for (const albumName of albums) {
     const folder = `albums/${albumName}/`

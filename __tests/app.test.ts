@@ -1,8 +1,8 @@
 import request from 'supertest'
 import DatabaseService from '../app/services/database-service'
 import PhotoService from '../app/services/photo-service'
-import populateData from '../app/populateData'
-import app from '../app'
+import populateData from '../app/start/populateData'
+import app from '../app/start'
 
 describe('App Test', () => {
   beforeAll(async () => {

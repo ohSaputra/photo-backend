@@ -18,6 +18,11 @@ const PhotoService = {
     return getRepository(Photos)
   },
 
+  /**
+   * create a photo
+   * @param {Object} params - Photo properties
+   * @returns {Promise} Promise
+   */
   async create ({ name, path, raw, album, createdAt }: IPhotos) {
     const repository = PhotoService.photoRepository()
     return await repository.insert({
@@ -30,6 +35,12 @@ const PhotoService = {
     })
   },
 
+  /**
+   * list photo
+   * @param {number} skip
+   * @param {number} limit
+   * @returns {Promise} Promise of Photos + Count
+   */
   async list ({ skip, limit }: iList) {
     const repository = PhotoService.photoRepository()
     return await repository
@@ -40,11 +51,22 @@ const PhotoService = {
       .getManyAndCount()
   },
 
+  /**
+   * find one photo
+   * @param {string} album
+   * @param {string} name
+   * @returns {Promise} Promise of found photo
+   */
   async findOne ({ album, name }: iFind) {
     const repository = PhotoService.photoRepository()
     return await repository.findOne({ album, name })
   },
 
+  /**
+   * remove a photo
+   * @param {string} album
+   * @param {string} name
+   */
   async remove ({ album, name }: iFind) {
     const repository = PhotoService.photoRepository()
     await repository.delete({ album, name })
@@ -57,6 +79,9 @@ const PhotoService = {
     })
   },
 
+  /**
+   * clear table photo
+   */
   async flush () {
     const repository = PhotoService.photoRepository()
     await repository.clear()

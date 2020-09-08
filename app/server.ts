@@ -2,18 +2,18 @@
 import 'reflect-metadata'
 import 'module-alias/register'
 
-import app from '@app/index'
+import app from '@app/start'
 import logger from '@lib/logger'
 import DatabaseService from '@services/database-service'
-
-const port: string = app.get('port')
+import { env } from '@app/env'
 
 DatabaseService.connect()
   .then(async () => {
+    // Seeding the database with data from static album
     await DatabaseService.populateData()
-    app.listen(port, () => {
-      console.log('\x1b[36m%s\x1b[0m', `Express server started at http://localhost:${port}`)
-      console.log('\x1b[36m%s\x1b[0m', `Swagger UI hosted at http://localhost:${port}/dev/api-docs`)
+    app.listen(env.app.port, () => {
+      console.log('\x1b[36m%s\x1b[0m', `Express server started at http://localhost:${env.app.port}`)
+      console.log('\x1b[36m%s\x1b[0m', `Swagger UI hosted at http://localhost:${env.app.port}/dev/api-docs`)
     })
   })
   .catch(e => { throw e })

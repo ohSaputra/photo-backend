@@ -1,3 +1,13 @@
+/*
+|--------------------------------------------------------------------------
+| TypeOrm - Database ORM
+|--------------------------------------------------------------------------
+|
+| This file is dedicated for defining Database configurations
+| rather than updating data from this function better to
+| update it via `.env` file
+|
+*/
 import { getConnectionOptions, ConnectionOptions } from 'typeorm'
 import { env } from '@app/env'
 
