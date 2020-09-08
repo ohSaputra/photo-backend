@@ -5,7 +5,8 @@ export interface IPhotos {
   album: string
   name: string
   path: string
-  raw: string
+  raw: string,
+  createdAt: Date
 }
 
 @Entity()
@@ -26,4 +27,7 @@ export class Photos {
 
   @Column()
   public raw: string
+
+  @Column()
+  public createdAt: Date
 }

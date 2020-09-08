@@ -18,14 +18,15 @@ const PhotoService = {
     return getRepository(Photos)
   },
 
-  async create ({ name, path, raw, album }: IPhotos) {
+  async create ({ name, path, raw, album, createdAt }: IPhotos) {
     const repository = PhotoService.photoRepository()
     return await repository.insert({
       id: uuidv1(),
       name,
       raw,
       path,
-      album
+      album,
+      createdAt
     })
   },
 
@@ -33,8 +34,9 @@ const PhotoService = {
     const repository = PhotoService.photoRepository()
     return await repository
       .createQueryBuilder('photos')
-      .skip(skip)
+      .offset(skip)
       .limit(limit)
+      .orderBy('createdAt')
       .getManyAndCount()
   },
 

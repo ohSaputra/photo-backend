@@ -20,7 +20,8 @@ const add: RequestHandler = async (req, res) => {
       name: file.filename,
       path: `/${file.path}`,
       raw: `/photos/${album.toLowerCase()}/${file.filename}`,
-      album
+      album,
+      createdAt: new Date()
     })
     list.push({
       album,

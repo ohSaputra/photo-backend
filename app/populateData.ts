@@ -1,6 +1,7 @@
 import fs from 'fs'
 import PhotoService from '@services/photo-service'
 import { capitalFirst } from '@middlewares/string'
+import { date } from 'joi'
 
 const albums = [
   'food',
@@ -23,7 +24,8 @@ export default (): void => {
           name: file,
           path: `/albums/${capitalAlbum}/${file}`,
           raw: `/photos/${albumName}/${file}`,
-          album: capitalAlbum
+          album: capitalAlbum,
+          createdAt: new Date()
         }).catch(e => { throw e })
       }
     })
