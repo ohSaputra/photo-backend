@@ -1,3 +1,4 @@
 jest.config.js
 __tests
 coverage
+dist

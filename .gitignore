@@ -31,3 +31,6 @@ tmp
 
 # Coverage directory used by tools like istanbul
 coverage
+
+# Build
+dist

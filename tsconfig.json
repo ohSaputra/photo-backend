@@ -1,6 +1,7 @@
 {
   "include": [
-    "app/**/*", "loaders/logger.ts"
+    "app/**/*", 
+    "lib/**/*"
   ],
   "compilerOptions": {
     "module": "commonjs",

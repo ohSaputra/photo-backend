@@ -8,7 +8,7 @@
     "postinstall": "chmod +x ./scripts/dev.sh",
     "build": "tsc",
     "dev": "./scripts/dev.sh",
-    "start": "node dist/server.js",
+    "start": "./scripts/dev.sh",
     "test": "jest",
     "lint": "npx eslint .",
     "eslint": "npx eslint app/server.ts"
