@@ -132,7 +132,7 @@ Running the above commands results in
 ### API Documentation
 
 - Run swagger api documentation via this link `http://localhost:8888/dev/api-docs`
-> NOTE: Api documentation only appear in development environment
+> Please be aware that Api documentation only appear in `development` environment
 
 ### Coverage
 
