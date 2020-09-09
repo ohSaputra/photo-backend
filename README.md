@@ -129,9 +129,13 @@ Running the above commands results in
 
 - Run the unit tests using `yarn test` (There is also a vscode task for this called `test`).
 
+### API Documentation
+
+- Run swagger api documentation via this link `http://localhost:8888/dev/api-docs`
+> NOTE: Api documentation only appear in development environment
+
 ### Coverage
 
-------------------------|---------|----------|---------|---------|-------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ------------------------|---------|----------|---------|---------|-------------------
 All files               |   78.81 |    61.54 |      66 |   78.74 |
@@ -166,4 +170,3 @@ All files               |   78.81 |    61.54 |      66 |   78.74 |
   health.ts             |     100 |      100 |     100 |     100 |
   photo.ts              |     100 |      100 |     100 |     100 |
   swagger.ts            |     100 |      100 |     100 |     100 |
-------------------------|---------|----------|---------|---------|-------------------
