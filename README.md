@@ -9,7 +9,7 @@
 </a>
 
 # Photo Album Assignment
-This repo is a backend assignment test from investax.
+This repo is a backend assignment test for investax.
 
 A few things to note in the project:
 
